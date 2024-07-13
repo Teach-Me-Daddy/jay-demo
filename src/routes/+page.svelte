@@ -2,13 +2,10 @@
   import { clicks, countdown, gameStart } from './stores.js';
 
   let intervalId = 0;
-  let disableClickMeBtn;
-  let disablePauseBtn;
-  let disablePlayBtn;
 
   // delayed reactivity without also checking with countdown
-  $: disableClickMeBtn = ($countdown === 0 || !gameStart);
-  $: disablePauseBtn = ($countdown === 0 || !gameStart);
+  $: disableClickMeBtn = ($countdown === 0 || !$gameStart);
+  $: disablePauseBtn = ($countdown === 0 || !$gameStart);
   $: disablePlayBtn = $gameStart;
 
   const addClicks = () => clicks.update(n => n + 1);
@@ -62,7 +59,7 @@
               </svg>
             </button>
             <button
-              class="btn border-red-500 bg-r    ุed-100 text-rose-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              class="btn border-red-500 bg-red-100 text-rose-500 disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={disablePauseBtn}
               on:click={stopCountdown}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
