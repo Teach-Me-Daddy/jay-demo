@@ -1,43 +1,40 @@
-<script lang="ts">
-  let clicks: number = 0;
-  let countdown: number = 10;
-  let intervalId: number;
+<script>
+  import { clicks, countdown, gameStart } from './stores.js';
 
-  let disableClickMeBtn: boolean;
-  let disablePauseBtn: boolean;
-  let disablePlayBtn: boolean;
-  let gameStart: boolean = false;
+  let intervalId = 0;
+  let disableClickMeBtn;
+  let disablePauseBtn;
+  let disablePlayBtn;
 
   // delayed reactivity without also checking with countdown
-  $: disableClickMeBtn = (countdown === 0 || !gameStart);
-  $: disablePauseBtn = (countdown === 0 || !gameStart);
-  $: disablePlayBtn = gameStart;
+  $: disableClickMeBtn = ($countdown === 0 || !gameStart);
+  $: disablePauseBtn = ($countdown === 0 || !gameStart);
+  $: disablePlayBtn = $gameStart;
 
-  const addClicks = () => clicks += 1;
+  const addClicks = () => clicks.update(n => n + 1);
 
   const reduceCountdown = () => {
-    if (countdown) {
-      countdown -= 1;
+    if ($countdown) {
+      countdown.update(n => n - 1);
     } else {
       clearInterval(intervalId);
     }
   };
 
   const startCountdown = () => {
-    gameStart = true;
+    gameStart.set(true);
     intervalId = setInterval(reduceCountdown, 1000);
   };
 
   const stopCountdown = () => {
-    gameStart = false;
+    gameStart.set(false);
     clearInterval(intervalId);
   };
 
   const resetCountdown = () => {
     stopCountdown();
-    countdown = 10;
-    clicks = 0;
-    gameStart = false;
+    countdown.set(10);
+    clicks.set(0);
   };
 
 </script>
@@ -48,12 +45,12 @@
     <h2 class="font-thin mb-20 text-slate-500">Find out what your finger is capable of 👀</h2>
 
     <div class="mb-20 text-center">
-      <p class="text-9xl mb-2">{clicks}</p>
+      <p class="text-9xl mb-2">{$clicks}</p>
       <button class="btn rounded-xl bg-white disabled:opacity-50 disabled:cursor-not-allowed" disabled={disableClickMeBtn} on:click={addClicks}>Click me</button>
     </div>
 
     <div class="controls">
-        <p class="mb-4 text-xl">{countdown}</p>
+        <p class="mb-4 text-xl">{$countdown}</p>
         <div class="flex justify-between">
           <div>
             <button
@@ -65,7 +62,7 @@
               </svg>
             </button>
             <button
-              class="btn border-red-500 bg-red-100 text-rose-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              class="btn border-red-500 bg-r    ุed-100 text-rose-500 disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={disablePauseBtn}
               on:click={stopCountdown}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
