@@ -1,5 +1,7 @@
-import { writable } from 'svelte/store';
+import { writable } from "svelte/store";
 
 export const clicks = writable(0);
 export const countdown = writable(10);
 export const gameStart = writable(false);
+
+//gameState: started, not-started, paused, finished
