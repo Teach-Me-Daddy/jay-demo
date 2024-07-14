@@ -1,25 +1,25 @@
-import { clicks, countdown, gameStart } from './stores.js';
-import { get } from 'svelte/store';
+import { get } from "svelte/store";
+import { clicks, countdown, gameStart } from "../lib/stores.js";
 
 let intervalId = 0;
 
-export const reduceCountdown = () => {
+export function reduceCountdown() {
   if (get(countdown)) {
-    countdown.update(n => n - 1);
+    countdown.update((n) => n - 1);
   } else {
     clearInterval(intervalId);
   }
-};
+}
 
-export const startCountdown = () => {
+export function startCountdown() {
   gameStart.set(true);
   intervalId = setInterval(reduceCountdown, 1000);
-};
+}
 
-export const stopCountdown = () => {
+export function stopCountdown() {
   gameStart.set(false);
   clearInterval(intervalId);
-};
+}
 
 export const resetCountdown = () => {
   stopCountdown();
