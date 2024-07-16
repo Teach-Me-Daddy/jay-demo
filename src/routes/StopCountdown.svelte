@@ -1,6 +1,6 @@
 <script>
-  import { gameStart, countdown } from './stores.js';
-  import { stopCountdown } from './timerUtils.js';
+  import { gameStart, countdown } from '../lib/stores.js';
+  import { stopCountdown } from '../lib/timerUtils.js';
 
   // delayed reactivity without also checking with countdown
   $: disablePauseBtn = ($countdown === 0 || !$gameStart);
@@ -15,7 +15,7 @@
   </svg>
 </button>
 
-<style>
+<style lang='postcss'>
   .btn {
     @apply border rounded-lg py-2 px-3 font-medium;
   }

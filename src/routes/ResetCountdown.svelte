@@ -1,5 +1,5 @@
 <script>
-  import { resetCountdown } from './timerUtils.js';
+  import { resetCountdown } from '../lib/timerUtils.js';
 </script>
 
 <button
@@ -11,7 +11,7 @@
   </svg>
 </button>
 
-<style>
+<style lang='postcss'>
   .btn {
     @apply border rounded-lg py-2 px-3 font-medium;
   }

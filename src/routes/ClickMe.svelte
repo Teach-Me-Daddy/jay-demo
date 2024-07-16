@@ -1,5 +1,5 @@
 <script>
-  import { clicks, countdown, gameStart } from './stores.js';
+  import { clicks, countdown, gameStart } from '../lib/stores.js';
 
   const addClicks = () => clicks.update(n => n + 1);
 
@@ -13,7 +13,7 @@
   disabled={disableClickMeBtn}
   on:click={addClicks}>Click me</button>
 
-<style>
+<style lang='postcss'>
   .btn {
     @apply border rounded-lg py-2 px-3 font-medium;
   }

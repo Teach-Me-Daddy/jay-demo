@@ -1,6 +1,6 @@
 <script>
-  import { gameStart } from './stores.js';
-  import { startCountdown } from './timerUtils.js';
+  import { gameStart } from '../lib/stores.js';
+  import { startCountdown } from '../lib/timerUtils.js';
 
   $: disablePlayBtn = $gameStart;
 </script>
@@ -14,7 +14,7 @@
   </svg>
 </button>
 
-<style>
+<style lang='postcss'>
   .btn {
     @apply border rounded-lg py-2 px-3 font-medium;
   }
