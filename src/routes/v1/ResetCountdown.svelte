@@ -1,5 +1,5 @@
 <script>
-  import { resetCountdown } from '../lib/timerUtils.js';
+  import { resetCountdown } from '../../lib/timerUtils.js';
 </script>
 
 <button

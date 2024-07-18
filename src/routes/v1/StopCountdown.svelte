@@ -1,6 +1,6 @@
 <script>
-  import { gameStart, countdown } from '../lib/stores.js';
-  import { stopCountdown } from '../lib/timerUtils.js';
+  import { gameStart, countdown } from '../../lib/stores.js';
+  import { stopCountdown } from '../../lib/timerUtils.js';
 
   // delayed reactivity without also checking with countdown
   $: disablePauseBtn = ($countdown === 0 || !$gameStart);

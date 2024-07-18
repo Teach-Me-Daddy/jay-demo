@@ -1,6 +1,6 @@
 <script>
-  import { gameStart } from '../lib/stores.js';
-  import { startCountdown } from '../lib/timerUtils.js';
+  import { gameStart } from '../../lib/stores.js';
+  import { startCountdown } from '../../lib/timerUtils.js';
 
   $: disablePlayBtn = $gameStart;
 </script>

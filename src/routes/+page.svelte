@@ -1,31 +1,66 @@
-<script>
-  import { countdown } from '../lib/stores.js';
-  import ClickMe from './ClickMe.svelte';
-  import StartCountdown from './StartCountdown.svelte';
-  import StopCountdown from './StopCountdown.svelte';
-  import ResetCountdown from './ResetCountdown.svelte';
+<script lang='ts'>
+  import { goto } from '$app/navigation';
+
+  const navigateTo = (path: string) => {
+    goto(`/${path}`);
+  };
 </script>
 
-<div class="p-8 flex justify-center items-center h-screen">
-  <div class="max-w-lg mx-0 p-12 border rounded-xl bg-slate-50">
-    <h1 class="text-3xl mb-2 font-extrabold">Click Me</h1>
-    <h2 class="font-thin mb-20 text-slate-700">Find out what your finger is capable of 👀</h2>
-
-    <div class="mb-20 text-center">
-      <ClickMe />
+<div>
+  <div class="text-center flex flex-col items-center justify-center h-screen lg:flex-row lg:justify-center">
+    <div class="v1 card">
+      <h2 class="title">ClickMe</h2>
+      <p class="sub-title">Play the original click game to see how fast you can click!</p>
+      <button class="cursor-pointer btn" on:click={() => navigateTo('v1')}>Play ClickMe</button>
     </div>
-
-    <div class="controls">
-        <p class="mb-4 text-xl">{$countdown}</p>
-        <div class="flex justify-between">
-          <div>
-            <StartCountdown />
-            <StopCountdown />
-          </div>
-          <div>
-            <ResetCountdown />
-          </div>
-        </div>
-    </div> <!-- controls-->
-  </div> <!-- container-->
+    <div class="v2 card">
+      <h2 class="title">Click-a-Mole</h2>
+      <p class="sub-title">Challenge yourself by only clicking the mole!</p>
+      <button class="cursor-pointer btn" on:click={() => navigateTo('v2')}>Play Click-a-Mole</button>
+    </div>
+  </div>
 </div>
+
+<style lang='postcss'>
+  .btn {
+    @apply
+      border rounded-full
+      py-2 px-3
+      font-bold text-white
+      bg-blue-600;
+  }
+
+  .card {
+    @apply
+      flex flex-col justify-between
+      border border-blue-700 rounded-lg
+      py-10 px-10 h-1/3 m-10
+      w-8/12 lg:w-4/12
+      hover:scale-105
+      hover:bg-blue-600;
+  }
+
+  .title,
+  .sub-title,
+  .card,
+  .btn {
+    @apply transition ease-in-out delay-100;
+  }
+
+  .title {
+    @apply text-4xl font-extrabold text-blue-700;
+  }
+
+  .sub-title {
+    @apply text-slate-700;
+  }
+
+  .card:hover .title,
+  .card:hover .sub-title {
+    @apply text-slate-100;
+  }
+
+  .card:hover .btn {
+    @apply bg-white text-blue-700;
+  }
+</style>

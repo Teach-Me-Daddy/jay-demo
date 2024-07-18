@@ -1,5 +1,5 @@
 <script>
-  import { clicks, countdown, gameStart } from '../lib/stores.js';
+  import { clicks, countdown, gameStart } from '../../lib/stores.js';
 
   const addClicks = () => clicks.update(n => n + 1);
 
