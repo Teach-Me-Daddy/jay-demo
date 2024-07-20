@@ -8,7 +8,7 @@
   let randomNumber = Math.floor(Math.random() * 9);
 
   const changeTile = (e: any) => {
-    if (!gameStart) {
+    if (!gameStart || !countdown) {
       return;
     }
     if (Number(e.target.classList[0]) === randomNumber) {
